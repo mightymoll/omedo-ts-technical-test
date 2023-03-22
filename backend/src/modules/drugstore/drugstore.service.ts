@@ -15,7 +15,21 @@ export class DrugstoreService {
     return this.drugstoreRepository.listDrugstores();
   }
 
-  deleteDrugstore(drugstoreId: number): void {
-    //TODO
+  /* SUPPRIMER
+   * trouver la 'drugstore' dans la repository par le 'drugstoreId'
+   * s'il est trouver, supprimer l'entrée dans la repository et console.log une message de confirmation
+   * s'il n'est pas trouver, return erreur avec message 
+  */
+
+  deleteDrugstore(drugstoreId: number): any[] {
+    const record: DrugstoreRepository = this.drugstoreRepository[drugstoreId];
+    if (record) {
+      delete this.drugstoreRepository[drugstoreId];
+      console.log(drugstoreId + ' était supprimer')
+      return;
+    }
+    else {
+      throw new Error(drugstoreId + ' n\'était pas trouvé');
+    }
   }
 }
